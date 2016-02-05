@@ -35,4 +35,4 @@ VOLUME /minecraft
 
 WORKDIR /minecraft
 
-ENTRYPOINT /usr/bin/runmc
+CMD ["/usr/bin/runmc"]

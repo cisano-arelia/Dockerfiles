@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cd /minecraft
 
@@ -10,4 +10,8 @@ if [ ! -f mark2.properties ]; then
     cp /usr/mark2/mk2/resources/mark2.default.properties mark2.properties
 fi
 
-/usr/bin/mark2 start && tail -f logs/latest.log
+/usr/bin/mark2 start
+
+trap '{ /usr/bin/mark2 stop -n minecraft; exit 0; }' SIGTERM
+
+while true; do :; done
