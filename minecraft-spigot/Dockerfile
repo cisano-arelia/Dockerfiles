@@ -1,19 +1,31 @@
 # minecraft-spigot
-# inspiration and args-split from totokaka
 
 FROM java:8-jdk
 
 MAINTAINER nathema <me@nathema.eu>
 
-ADD args-split.sh /bin/args-split
+RUN apt-get update && \
+    apt-get install -y libssl-dev python-dev python-pip git
 
-RUN useradd -s /bin/bash -d /minecraft -m minecraft && \
-    chmod +x /bin/args-split && \
-    mkdir /BuildTools && \
-    wget -O /BuildTools/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
-    cd /BuildTools && \
-    java -jar BuildTools.jar --rev 1.8.8 && \
-    cp /BuildTools/spigot-1.8.8.jar /minecraft/spigot.jar
+RUN cd /usr && \
+    git clone https://github.com/gsand/mark2.git
+
+RUN cd /usr/mark2 && \
+    pip install -r requirements.txt && \
+    ln -s /usr/mark2/mark2 /usr/bin/mark2 && \
+    mkdir /etc/mark2 && \
+    cp /usr/mark2/mk2/resources/mark2.default.properties /etc/mark2/mark2.properties
+
+RUN mkdir /spigot && \
+    wget -O /spigot/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
+    cd /spigot && \
+    java -jar BuildTools.jar --rev 1.8.8
+
+RUN useradd -s /bin/bash -d /minecraft -m minecraft
+
+ADD runmc /usr/bin/runmc
+
+RUN chmod +x /usr/bin/runmc
 
 EXPOSE 25565
 
@@ -23,6 +35,4 @@ VOLUME /minecraft
 
 WORKDIR /minecraft
 
-ENTRYPOINT ["/bin/args-split", "java", "--", "-jar", "spigot.jar", "--"]
-
-CMD ["-Xmx2G", "-Xms256M", "--", "nogui"]
+ENTRYPOINT /usr/bin/runmc
