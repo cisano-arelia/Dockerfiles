@@ -25,7 +25,8 @@ RUN mkdir /spigot && \
     java -jar BuildTools.jar --rev 1.8.8 && \
     find . -maxdepth 1 ! -name '.' ! -name 'spigot*.jar' -exec rm -rf {} +
 
-RUN useradd -s /bin/bash -d /minecraft -m minecraft
+RUN useradd -s /bin/bash -d /minecraft -m minecraft && \
+    echo "minecraft - priority -1" >> /etc/security/limits.conf
 
 ADD runmc /usr/bin/runmc
 
@@ -39,4 +40,4 @@ VOLUME /minecraft
 
 WORKDIR /minecraft
 
-CMD ["/usr/bin/runmc"]
+CMD ["runmc"]
