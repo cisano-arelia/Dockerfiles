@@ -17,6 +17,6 @@ ExecStart=/usr/bin/docker run --name minecraft -p 25565:25565 --link mariadb:mys
 ExecStop=/usr/bin/docker stop minecraft
 
 [Install]
-WantedBy=multi-user.target```
+WantedBy=multi-user.target
 
 
