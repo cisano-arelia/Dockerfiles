@@ -2,7 +2,8 @@
 
 Example backup script: 
 
-```#!/bin/bash
+```
+#!/bin/bash
 
 BASEDIR=/srv/backup/data-containers
 

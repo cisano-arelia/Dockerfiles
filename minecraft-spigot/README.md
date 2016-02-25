@@ -2,7 +2,8 @@
 
 SystemD unit file for a small personal minecraft server: 
 
-```[Unit]
+```
+[Unit]
 Description=Minecraft
 After=mariadb.service
 Requires=mariadb.service
