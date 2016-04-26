@@ -22,7 +22,7 @@ RUN cd /usr/mark2 && \
 RUN mkdir /spigot && \
     wget -O /spigot/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
     cd /spigot && \
-    java -jar BuildTools.jar --rev 1.8.8 && \
+    java -jar BuildTools.jar --rev 1.9.2 && \
     find . -maxdepth 1 ! -name '.' ! -name 'spigot*.jar' -exec rm -rf {} +
 
 RUN useradd -s /bin/bash -d /minecraft -m minecraft && \
