@@ -14,4 +14,7 @@ fi
 
 trap '{ /usr/bin/mark2 stop -n minecraft; exit 0; }' SIGTERM
 
-while true; do :; done
+while :
+do
+	sleep 10
+done
