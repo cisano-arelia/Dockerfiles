@@ -1,3 +1,6 @@
+Author and rights: https://github.com/overshard
+This is a fork with small teamspeak version change
+
 # docker-teamspeak
 
 A nice and easy way to get a TeamSpeak server up and running using docker. For
