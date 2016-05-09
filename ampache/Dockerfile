@@ -13,6 +13,7 @@ RUN echo deb http://www.deb-multimedia.org jessie main non-free >> /etc/apt/sour
                         && docker-php-ext-install pdo_mysql\
                         && cd /var/www   \
                         && git clone https://github.com/ampache/ampache.git \
+                        && git --git-dir=ampache/.git --work-tree=ampache checkout tags/3.8.2 \
                         && mv ampache/* html/ \
                         && rm -r ampache \
                         && rm -rf /tmp/* /var/tmp/*  \
