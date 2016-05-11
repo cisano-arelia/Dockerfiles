@@ -9,11 +9,10 @@ MAINTAINER PlusMinus <piddlpiddl@gmail.com>
 # For installing ffmpeg, the deb-multimedia repository is used which might be considered unsafe so use with caution
 RUN echo deb http://www.deb-multimedia.org jessie main non-free >> /etc/apt/sources.list \
                         && apt-get update && apt-get install -y --force-yes -q deb-multimedia-keyring \
-                        && apt-get update && apt-get install -y -q git ffmpeg \
-                        && docker-php-ext-install pdo_mysql gettext \
+                        && apt-get update && apt-get install -y -q git ffmpeg libgd3 libpng-dev libjpeg-dev libfreetype6-dev \
+                        && docker-php-ext-install pdo_mysql gettext gd \
                         && cd /var/www   \
                         && git clone https://github.com/ampache/ampache.git \
-                        && git --git-dir=ampache/.git --work-tree=ampache checkout tags/3.8.2 \
                         && mv ampache/* html/ \
                         && rm -r ampache \
                         && rm -rf /tmp/* /var/tmp/*  \
