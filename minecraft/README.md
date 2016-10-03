@@ -14,7 +14,7 @@ RestartSec=30
 TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill minecraft
 ExecStartPre=-/usr/bin/docker rm minecraft
-ExecStart=/usr/bin/docker run --name minecraft -p 25565:25565 --link mariadb:mysql --link mail:mail --dns=x.x.x.x --cpuset-cpus=0,1 --memory=2G --privileged --volumes-from=minecraft-data nathema/minecraft-spigot:1.8.8
+ExecStart=/usr/bin/docker run --name minecraft -p 25565:25565 --link mariadb:mysql --link mail:mail --dns=x.x.x.x --cpuset-cpus=0,1 --memory=2G --privileged --volumes-from=minecraft-data nathema/minecraft
 ExecStop=/usr/bin/docker stop minecraft
 
 [Install]

@@ -19,12 +19,6 @@ RUN cd /usr/mark2 && \
     mkdir /etc/mark2 && \
     cp /usr/mark2/mk2/resources/mark2.default.properties /etc/mark2/mark2.properties
 
-RUN mkdir /spigot && \
-    wget -O /spigot/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
-    cd /spigot && \
-    java -jar BuildTools.jar --rev 1.9.2 && \
-    find . -maxdepth 1 ! -name '.' ! -name 'spigot*.jar' -exec rm -rf {} +
-
 RUN useradd -s /bin/bash -d /minecraft -m minecraft && \
     echo "minecraft - priority -1" >> /etc/security/limits.conf
 
